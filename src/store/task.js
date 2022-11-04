@@ -44,14 +44,7 @@ export const createTask = () => async (dispatch) => {
     dispatch(taskRequested());
     try {
         const data = await todosService.createTask();
-        console.log("task.js", data)
-        const newData = {
-            id: data.id,
-            ...data.params,
-
-        }
-        console.log("newdata", newData)
-        dispatch(addTask(newData))
+        dispatch(addTask(data))
     } catch (error) {
         dispatch(taskRequestFailed());
         dispatch(setError(error.message))
